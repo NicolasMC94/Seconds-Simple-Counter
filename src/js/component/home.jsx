@@ -4,7 +4,7 @@ import SecondsCounter from "./SecondCounter.jsx";
 //create your first component
 const Home = () => {
 	return (
-		<div className="home align-items-center">
+		<div className="align-items-center">
 			<SecondsCounter />
 		</div>
 	);
