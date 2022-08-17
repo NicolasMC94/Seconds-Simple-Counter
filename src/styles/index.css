@@ -1,12 +1,10 @@
+.borderRadius {
+    border-radius: 2rem;
+}
 
-/* 
-
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
-
-*/
+.size {
+    font-size: 120px;
+} 
+.bgSize {
+    height: 50%;
+}

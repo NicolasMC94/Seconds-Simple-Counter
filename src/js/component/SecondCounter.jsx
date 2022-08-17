@@ -1,35 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import DigitalTimer from "./DigitalTimer.jsx";
 
-const SecondsCounter = (props) => {
-	let counter = 0
+const SecondsCounter = () => {
+	const [segundoUno, setSegundoUno] = useState(0);
+	const [segundoDos, setSegundoDos] = useState(0);
+	const [minutoUno, setMinutoUno] = useState(0);
+	const [minutoDos, setMinutoDos] = useState(0);
+	const [horaUno, setHoraUno] = useState(0);
+	const [horaDos, setHoraDos] = useState(0);
+  
+	useEffect(() => {
 	  setInterval(() => {
-  
-		const today = new Date(counter);
-		const segundos = today.getSeconds();
-		const minutos = today.getMinutes();
-		const horas = today.getHours();
-  
-		console.log(segundos, minutos, horas)
+		setSegundoUno((valor) => valor + 1);
 	  }, 1000);
+	}, []);
   
+	if (segundoUno > 9) {
+	  setSegundoUno(0);
+	  setSegundoDos(segundoDos + 1);
+	}
+	if (segundoDos === 5 && segundoUno > 9) {
+	  setSegundoDos(0);
+	  setMinutoUno(minutoUno + 1);
+	}
+	if (minutoUno > 9) {
+	  setMinutoUno(0);
+	  setMinutoDos(minutoDos + 1);
+	}
+  
+	if (minutoDos === 5 && minutoUno > 9) {
+	  setMinutoDos(0);
+	  setHoraUno(horaUno + 1);
+	}
+	if (horaUno > 9) {
+	  setHoraUno(0);
+	  setHoraDos(horaDos + 1);
+	}
+	if (horaDos === 2 && horaUno > 4) {
+	  setHoraDos(0);
+	} else {clearInterval()}
   
 	return (
-	  <div className="container text-center">
-		<div className="d-flex flex-row justify-content-center align-items-center bg-secondary rounded">
-		  <div className="text-info bg-dark rounded my-2" id="hours">
-			{props.digitalHours}
-		  </div>
-		  <div className="my-2">:</div>
-		  <div className="text-info bg-dark rounded my-2" id="minutes">
-			{props.digitalMinutes}
-		  </div>
-		  <div className="my-2">:</div>
-		  <div className="text-info bg-dark rounded my-2" id="seconds">
-			{props.digitalSeconds}
-		  </div>
-		</div>
-	  </div>
+	  <>
+		<DigitalTimer
+		  secondOne={segundoUno}
+		  secondsTwo={segundoDos}
+		  minuteOne={minutoUno}
+		  minuteTwo={minutoDos}
+		  hourOne={horaUno}
+		  hourTwo={horaDos}
+		/>
+	  </>
 	);
   };
-
-export default SecondsCounter;
+  
+  export default SecondsCounter;
